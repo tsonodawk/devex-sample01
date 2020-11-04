@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{AE3F4EA1-14F2-490E-8E81-19FA44B73116}</ProjectGuid>
+    <ProjectGuid>{C1410873-6A87-4C25-9272-A7A44C6B0123}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SimpleProjectManager.Win</RootNamespace>
@@ -68,6 +68,10 @@
       <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
     </Reference>
+    <Reference Include="DevExpress.ExpressApp.Xpo.v20.2">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="DevExpress.Office.v20.2.Core">
       <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
@@ -77,6 +81,10 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="DevExpress.Persistent.BaseImpl.EF.v20.2">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.Persistent.BaseImpl.v20.2">
       <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
     </Reference>
@@ -93,6 +101,10 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="DevExpress.Utils.v20.2">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.Xpo.v20.2">
       <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
     </Reference>
@@ -205,12 +217,12 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SimpleProjectManager.Module.Win\SimpleProjectManager.Module.Win.csproj">
-      <Project>{B5E87AA5-243E-4C9F-A89C-FA823DF6CFD7}</Project>
+      <Project>{52F6B2FF-060A-4481-A1C0-BA6CB61ACBFD}</Project>
       <Name>SimpleProjectManager.Module.Win</Name>
       <Private>True</Private>
     </ProjectReference>
     <ProjectReference Include="..\SimpleProjectManager.Module\SimpleProjectManager.Module.csproj">
-      <Project>{2538D6EF-F497-4DB1-AAE0-DFE04173DC9C}</Project>
+      <Project>{3D33712B-93F7-4D2B-BD9C-FB91B8957DD7}</Project>
       <Name>SimpleProjectManager.Module</Name>
       <Private>True</Private>
     </ProjectReference>

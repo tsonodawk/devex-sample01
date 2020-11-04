@@ -3,9 +3,11 @@ using DevExpress.ExpressApp;
 using System.ComponentModel;
 using DevExpress.ExpressApp.Web;
 using System.Collections.Generic;
+using DevExpress.ExpressApp.Xpo;
 using DevExpress.ExpressApp.EF;
 using SimpleProjectManager.Module.BusinessObjects;
 using System.Data.Common;
+using System.Configuration;
 
 namespace SimpleProjectManager.Web {
     // For more typical usage scenarios, be sure to check out https://docs.devexpress.com/eXpressAppFramework/DevExpress.ExpressApp.Web.WebApplication
@@ -23,13 +25,26 @@ namespace SimpleProjectManager.Web {
             return new ViewUrlManager();
         }
         protected override void CreateDefaultObjectSpaceProvider(CreateCustomObjectSpaceProviderEventArgs args) {
-            if(args.Connection != null) {
-                args.ObjectSpaceProviders.Add(new EFObjectSpaceProvider(typeof(SimpleProjectManagerDbContext), TypesInfo, null, (DbConnection)args.Connection));
+            string connectionString = ConfigurationManager.ConnectionStrings["ConnectionStringXpo"].ConnectionString;
+            if (!String.IsNullOrEmpty(connectionString)){
+			args.ObjectSpaceProviders.Add(new XPObjectSpaceProvider(GetDataStoreProvider(ConfigurationManager.ConnectionStrings["ConnectionStringXpo"].ConnectionString, null), true));
+            }
+            args.ObjectSpaceProviders.Add(new EFObjectSpaceProvider(typeof(SimpleProjectManagerDbContext), ConfigurationManager.ConnectionStrings["ConnectionStringEF"].ConnectionString));
+            args.ObjectSpaceProviders.Add(new NonPersistentObjectSpaceProvider(TypesInfo, null));
+        }
+        private IXpoDataStoreProvider GetDataStoreProvider(string connectionString, System.Data.IDbConnection connection) {
+            System.Web.HttpApplicationState application = (System.Web.HttpContext.Current != null) ? System.Web.HttpContext.Current.Application : null;
+            IXpoDataStoreProvider dataStoreProvider = null;
+            if(application != null && application["DataStoreProvider"] != null) {
+                dataStoreProvider = application["DataStoreProvider"] as IXpoDataStoreProvider;
             }
             else {
-                args.ObjectSpaceProviders.Add(new EFObjectSpaceProvider(typeof(SimpleProjectManagerDbContext), TypesInfo, null, args.ConnectionString));
+                dataStoreProvider = XPObjectSpaceProvider.GetDataStoreProvider(connectionString, connection, true);
+                if(application != null) {
+                    application["DataStoreProvider"] = dataStoreProvider;
+                }
             }
-            args.ObjectSpaceProviders.Add(new NonPersistentObjectSpaceProvider(TypesInfo, null));
+			return dataStoreProvider;
         }
         private void SimpleProjectManagerAspNetApplication_DatabaseVersionMismatch(object sender, DevExpress.ExpressApp.DatabaseVersionMismatchEventArgs e) {
 #if EASYTEST

@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E8A89385-CA69-4F69-A7FC-46CD5F1973E3}</ProjectGuid>
+    <ProjectGuid>{F222B79C-90DF-4C36-9646-16D3BE2593B8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SimpleProjectManager.Module.Web</RootNamespace>
@@ -53,16 +53,25 @@
     <Reference Include="DevExpress.ExpressApp.Web.v20.2">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
+    <Reference Include="DevExpress.ExpressApp.Xpo.v20.2">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
     <Reference Include="DevExpress.Persistent.Base.v20.2">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="DevExpress.Persistent.BaseImpl.EF.v20.2">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
+    <Reference Include="DevExpress.Persistent.BaseImpl.v20.2">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
     <Reference Include="DevExpress.Printing.v20.2.Core">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="DevExpress.Web.v20.2">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="DevExpress.Xpo.v20.2">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="mscorlib">
@@ -111,7 +120,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SimpleProjectManager.Module\SimpleProjectManager.Module.csproj">
-      <Project>{2538D6EF-F497-4DB1-AAE0-DFE04173DC9C}</Project>
+      <Project>{3D33712B-93F7-4D2B-BD9C-FB91B8957DD7}</Project>
       <Name>SimpleProjectManager.Module</Name>
       <Private>True</Private>
     </ProjectReference>
