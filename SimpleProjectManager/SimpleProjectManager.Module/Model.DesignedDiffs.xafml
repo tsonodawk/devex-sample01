@@ -3,6 +3,15 @@
   <BOModel>
     <Class Name="SimpleProjectManager.Module.BusinessObjects.Marketing.Customer" ImageName="BO_Customer" />
   </BOModel>
+  <NavigationItems>
+    <Items>
+      <Item Id="Planning">
+        <Items>
+          <Item Id="@bb5f3df6-88f1-41c5-85da-6fae9e1885cb" Caption="Employee" ViewId="Person_ListView" IsNewNode="True" />
+        </Items>
+      </Item>
+    </Items>
+  </NavigationItems>
   <SchemaModules>
     <SchemaModule Name="SystemModule" Version="20.2.3.0" IsNewNode="True" />
   </SchemaModules>

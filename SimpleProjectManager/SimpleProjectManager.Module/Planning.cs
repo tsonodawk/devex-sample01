@@ -3,9 +3,22 @@ using DevExpress.Persistent.Base;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.Xpo;
 
+using DevExpress.ExpressApp.ConditionalAppearance;
+using DevExpress.Persistent.Validation;
+using System.Drawing;
+
 namespace SimpleProjectManager.Module.BusinessObjects.Planning
 {
     [NavigationItem("Planning")]
+    [Appearance("Completed1", TargetItems = "Subject",
+    Criteria = "Status = 'Completed'", FontStyle = FontStyle.Strikeout, FontColor = "ForestGreen")]
+    [Appearance("Completed2", TargetItems = "*;Status;AssignedTo",
+    Criteria = "Status = 'Completed'", Enabled = false)]
+    [Appearance("InProgress", TargetItems = "Subject;AssignedTo",
+    Criteria = "Status = 'InProgress'", BackColor = "LemonChiffon")]
+    [Appearance("Deferred", TargetItems = "Subject",
+    Criteria = "Status = 'Deferred'", BackColor = "MistyRose")]
+    [RuleCriteria("EndDate >= StartDate")]
     public class ProjectTask : BaseObject
     {
         public ProjectTask(Session session) : base(session) { }
