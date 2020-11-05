@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{51E167D3-DE20-4A71-914E-E178481D1B7D}</ProjectGuid>
+    <ProjectGuid>{4DBAD540-9E19-49FA-8339-714417DBCFDB}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -66,6 +66,10 @@
       <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
     </Reference>
+    <Reference Include="DevExpress.ExpressApp.Xpo.v20.2">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="DevExpress.Office.v20.2.Core">
       <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
@@ -75,6 +79,10 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="DevExpress.Persistent.BaseImpl.EF.v20.2">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.Persistent.BaseImpl.v20.2">
       <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
     </Reference>
@@ -99,6 +107,10 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="DevExpress.Web.v20.2">
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.Xpo.v20.2">
       <SpecificVersion>False</SpecificVersion>
       <Private>False</Private>
     </Reference>
@@ -214,15 +226,18 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SimpleProjectManager.Module.Web\SimpleProjectManager.Module.Web.csproj">
-      <Project>{E8A89385-CA69-4F69-A7FC-46CD5F1973E3}</Project>
+      <Project>{F222B79C-90DF-4C36-9646-16D3BE2593B8}</Project>
       <Name>SimpleProjectManager.Module.Web</Name>
       <Private>True</Private>
     </ProjectReference>
     <ProjectReference Include="..\SimpleProjectManager.Module\SimpleProjectManager.Module.csproj">
-      <Project>{2538D6EF-F497-4DB1-AAE0-DFE04173DC9C}</Project>
+      <Project>{3D33712B-93F7-4D2B-BD9C-FB91B8957DD7}</Project>
       <Name>SimpleProjectManager.Module</Name>
       <Private>True</Private>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\licenses.licx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

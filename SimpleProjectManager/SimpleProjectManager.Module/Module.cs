@@ -6,6 +6,7 @@ using System.ComponentModel;
 using DevExpress.ExpressApp.DC;
 using System.Collections.Generic;
 using DevExpress.Persistent.Base;
+using DevExpress.Persistent.BaseImpl;
 using DevExpress.ExpressApp.Model;
 using DevExpress.ExpressApp.Actions;
 using DevExpress.ExpressApp.Editors;
@@ -15,6 +16,7 @@ using DevExpress.ExpressApp.Model.DomainLogics;
 using DevExpress.ExpressApp.Model.NodeGenerators;
 using System.Data.Entity;
 using SimpleProjectManager.Module.BusinessObjects;
+using DevExpress.ExpressApp.Xpo;
 
 namespace SimpleProjectManager.Module {
     // For more typical usage scenarios, be sure to check out https://docs.devexpress.com/eXpressAppFramework/DevExpress.ExpressApp.ModuleBase.
@@ -25,9 +27,9 @@ namespace SimpleProjectManager.Module {
 			DevExpress.ExpressApp.SystemModule.ResetViewSettingsController.DefaultAllowRecreateView = false;
             // Uncomment this code to delete and recreate the database each time the data model has changed.
             // Do not use this code in a production environment to avoid data loss.
-            // #if DEBUG
-            // Database.SetInitializer(new DropCreateDatabaseIfModelChanges<SimpleProjectManagerDbContext>());
-            // #endif 
+#if DEBUG
+            Database.SetInitializer(new DropCreateDatabaseIfModelChanges<SimpleProjectManagerDbContext>());
+#endif
         }
         public SimpleProjectManagerModule() {
             InitializeComponent();
@@ -39,6 +41,10 @@ namespace SimpleProjectManager.Module {
         public override void Setup(XafApplication application) {
             base.Setup(application);
             // Manage various aspects of the application UI and behavior at the module level.
+        }
+        public override void CustomizeTypesInfo(ITypesInfo typesInfo) {
+            base.CustomizeTypesInfo(typesInfo);
+            CalculatedPersistentAliasHelper.CustomizeTypesInfo(typesInfo);
         }
     }
 }

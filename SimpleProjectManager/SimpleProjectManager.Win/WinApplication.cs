@@ -5,9 +5,11 @@ using DevExpress.ExpressApp.Win;
 using System.Collections.Generic;
 using DevExpress.ExpressApp.Updating;
 using DevExpress.ExpressApp.Win.Utils;
+using DevExpress.ExpressApp.Xpo;
 using DevExpress.ExpressApp.EF;
 using SimpleProjectManager.Module.BusinessObjects;
 using System.Data.Common;
+using System.Configuration;
 
 namespace SimpleProjectManager.Win {
     // For more typical usage scenarios, be sure to check out https://docs.devexpress.com/eXpressAppFramework/DevExpress.ExpressApp.Win.WinApplication._members
@@ -17,12 +19,8 @@ namespace SimpleProjectManager.Win {
 			SplashScreen = new DXSplashScreen(typeof(XafSplashScreen), new DefaultOverlayFormOptions());
         }
         protected override void CreateDefaultObjectSpaceProvider(CreateCustomObjectSpaceProviderEventArgs args) {
-			if(args.Connection != null) {
-				args.ObjectSpaceProviders.Add(new EFObjectSpaceProvider(typeof(SimpleProjectManagerDbContext), TypesInfo, null, (DbConnection)args.Connection));
-			}
-			else {
-				args.ObjectSpaceProviders.Add(new EFObjectSpaceProvider(typeof(SimpleProjectManagerDbContext), TypesInfo, null, args.ConnectionString));
-			}
+			args.ObjectSpaceProviders.Add(new XPObjectSpaceProvider(XPObjectSpaceProvider.GetDataStoreProvider(ConfigurationManager.ConnectionStrings["ConnectionStringXpo"].ConnectionString, null, true), false));
+			args.ObjectSpaceProviders.Add(new EFObjectSpaceProvider(typeof(SimpleProjectManagerDbContext), ConfigurationManager.ConnectionStrings["ConnectionStringEF"].ConnectionString));
             args.ObjectSpaceProviders.Add(new NonPersistentObjectSpaceProvider(TypesInfo, null));
         }
         private void SimpleProjectManagerWindowsFormsApplication_CustomizeLanguagesList(object sender, CustomizeLanguagesListEventArgs e) {

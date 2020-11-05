@@ -92,7 +92,6 @@ namespace SimpleProjectManager.Module.BusinessObjects.Marketing
         #endregion
     }
     // ...
-
     [NavigationItem("Marketing")]
     public class Testimonial : INotifyPropertyChanged
     {
@@ -108,6 +107,7 @@ namespace SimpleProjectManager.Module.BusinessObjects.Marketing
             protected set { SetProperty(ref id, value); }
         }
         string quote;
+        [FieldSize(FieldSizeAttribute.Unlimited)]
         public string Quote
         {
             get { return quote; }
@@ -155,5 +155,4 @@ namespace SimpleProjectManager.Module.BusinessObjects.Marketing
         }
         #endregion
     }
-
 }

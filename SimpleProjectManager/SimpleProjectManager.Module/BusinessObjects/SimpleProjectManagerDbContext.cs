@@ -35,5 +35,6 @@ namespace SimpleProjectManager.Module.BusinessObjects {
 
 		public DbSet<Customer> Customer { get; set; }
 		public DbSet<Testimonial> Testimonial { get; set; }
+
 	}
 }
