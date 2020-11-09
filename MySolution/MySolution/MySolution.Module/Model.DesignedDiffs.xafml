@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application Title="MySolution">
+  <ActionDesign>
+    <Actions>
+      <Action Id="ClearTasksAction" ToolTip="Clear the current Contact's tasks" Shortcut="Control+Shift+C" ConfirmationMessage="Are you sure you want to clear the {0}'s Tasks list?" SelectionDependencyType="RequireSingleObject" />
+      <Action Id="Task.MarkCompleted" ValidationContexts="MarkCompleted" />
+    </Actions>
+    <ActionToContainerMapping>
+      <ActionContainer Id="RecordEdit">
+        <ActionLink ActionId="ClearTasksAction" IsNewNode="True" />
+      </ActionContainer>
+      <ActionContainer Id="View">
+        <ActionLink ActionId="ClearTasksAction" Removed="True" />
+      </ActionContainer>
+    </ActionToContainerMapping>
+  </ActionDesign>
+  <BOModel>
+    <Class Name="DevExpress.Persistent.BaseImpl.PhoneNumber">
+      <OwnMembers>
+        <Member Name="Number" EditMask="(000) 000-0000" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.Persistent.BaseImpl.Task">
+      <OwnMembers>
+        <Member Name="DueDate" DisplayFormat="{0:D}" />
+        <Member Name="PercentCompleted" DisplayFormat="{0:N0}%" />
+        <Member Name="StartDate" DisplayFormat="{0:D}" />
+        <Member Name="Subject" RowCount="2" />
+      </OwnMembers>
+    </Class>
+    <Class Name="MySolution.Module.BusinessObjects.Contact" ObjectCaptionFormat="{0:FullName} from the {0:Department}">
+      <OwnMembers>
+        <Member Name="Position" DataSourceProperty="Department.Positions" DataSourcePropertyIsNullMode="SelectAll" />
+      </OwnMembers>
+    </Class>
+    <Class Name="MySolution.Module.BusinessObjects.Department" ImageName="BO_Department" />
+    <Class Name="MySolution.Module.BusinessObjects.Payment">
+      <OwnMembers>
+        <Member Name="Rate" ImmediatePostData="True" />
+      </OwnMembers>
+    </Class>
+    <Class Name="MySolution.Module.BusinessObjects.Position" ImageName="BO_Position" />
+  </BOModel>
+  <CreatableItems>
+    <CreatableItem ClassName="DevExpress.Persistent.BaseImpl.Event" IsNewNode="True" />
+  </CreatableItems>
+  <NavigationItems ShowImages="True">
+    <Items>
+      <Item Id="Default" ChildItemsDisplayStyle="List">
+        <Items>
+          <Item Id="Note" ViewId="Note_ListView" IsNewNode="True" />
+        </Items>
+      </Item>
+    </Items>
+  </NavigationItems>
+  <Options>
+    <LayoutManagerOptions RequiredFieldMark="*" />
+  </Options>
+  <SchemaModules>
+    <SchemaModule Name="SystemModule" Version="20.2.3.0" IsNewNode="True" />
+  </SchemaModules>
+  <Validation>
+    <Rules>
+      <RuleCriteria Id="TaskIsNotStarted" TargetType="MySolution.Module.BusinessObjects.DemoTask" Criteria="Status != 'NotStarted'" TargetContextIDs="MarkCompleted" CustomMessageTemplate="Cannot set the task as completed because it has not started" IsNewNode="True" />
+    </Rules>
+  </Validation>
+  <Views>
+    <DetailView Id="Contact_DetailView">
+      <Items>
+        <PropertyEditor Id="Department.Office" PropertyName="Department.Office" IsNewNode="True" />
+      </Items>
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="Contact">
+              <LayoutGroup Id="Contact_col2">
+                <LayoutItem Id="Department.Office" ViewItem="Department.Office" IsNewNode="True" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="Contact_ListView" IsGroupPanelVisible="True">
+      <Columns>
+        <ColumnInfo Id="FullName" SortIndex="0" GroupIndex="-1" />
+        <ColumnInfo Id="WebPageAddress" SortOrder="None" GroupIndex="-1" Index="1" />
+        <ColumnInfo Id="NickName" Index="2" />
+        <ColumnInfo Id="Department" SortOrder="Ascending" GroupIndex="0" />
+        <ColumnInfo Id="Manager" Index="7" />
+        <ColumnInfo Id="Position" SortOrder="Ascending" GroupIndex="1" Index="8" />
+      </Columns>
+      <Filters CurrentFilterId="Developers">
+        <Filter Id="All Contacts" IsNewNode="True" />
+        <Filter Id="Developers" Criteria="Position.Title = 'Developer'" IsNewNode="True" />
+        <Filter Id="Development Department Contacts" Criteria="[Department.Title] = 'Development Department'" IsNewNode="True" />
+      </Filters>
+    </ListView>
+    <ListView Id="DemoTask_ListView" AllowEdit="True" NewItemRowPosition="Top" PreviewColumnName="Description" />
+    <ListView Id="Department_ListView" MasterDetailMode="ListViewAndDetailView" />
+  </Views>
+</Application>
