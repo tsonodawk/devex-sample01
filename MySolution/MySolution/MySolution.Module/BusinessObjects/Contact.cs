@@ -57,11 +57,22 @@ namespace MySolution.Module.BusinessObjects
         }
 
         private Department department;
-        [Association("Department-Contacts")]
+        [Association("Department-Contacts", typeof(Department)), ImmediatePostData]
         public Department Department
         {
             get { return department; }
-            set { SetPropertyValue(nameof(Department), ref department, value); }
+            set
+            {
+                SetPropertyValue(nameof(Department), ref department, value);
+                if (!IsLoading)
+                {
+                    Position = null;
+                    if (Manager != null && Manager.Department != value)
+                    {
+                        Manager = null;
+                    }
+                }
+            }
         }
         private Position position;
         public Position Position
@@ -117,6 +128,12 @@ namespace MySolution.Module.BusinessObjects
                 return GetCollection<Contact>(nameof(Contacts));
             }
         }
+
+        [Association("Departments-Positions")]
+        public XPCollection<Position> Positions
+        {
+            get { return GetCollection<Position>(nameof(Positions)); }
+        }
     }
     [DefaultClassOptions]
     [System.ComponentModel.DefaultProperty(nameof(Title))]
@@ -130,6 +147,12 @@ namespace MySolution.Module.BusinessObjects
         {
             get { return title; }
             set { SetPropertyValue(nameof(Title), ref title, value); }
+        }
+
+        [Association("Departments-Positions")]
+        public XPCollection<Department> Departments
+        {
+            get { return GetCollection<Department>(nameof(Departments)); }
         }
     }
 

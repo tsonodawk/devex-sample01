@@ -99,6 +99,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinessObjects\Contact.cs" />
+    <Compile Include="BusinessObjects\Payment.cs" />
     <Compile Include="Controllers\ClearContactTasksController.cs">
       <SubType>Component</SubType>
     </Compile>
