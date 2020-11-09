@@ -1,8 +1,22 @@
-﻿<?xml version="1.0" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Application Title="MySolution">
+  <ActionDesign>
+    <Actions>
+      <Action Id="ClearTasksAction" ToolTip="Clear the current Contact's tasks" Shortcut="Control+Shift+C" ConfirmationMessage="Are you sure you want to clear the {0}'s Tasks list?" SelectionDependencyType="RequireSingleObject" />
+    </Actions>
+    <ActionToContainerMapping>
+      <ActionContainer Id="RecordEdit">
+        <ActionLink ActionId="ClearTasksAction" IsNewNode="True" />
+      </ActionContainer>
+      <ActionContainer Id="View">
+        <ActionLink ActionId="ClearTasksAction" Removed="True" />
+      </ActionContainer>
+    </ActionToContainerMapping>
+  </ActionDesign>
   <Options>
     <LayoutManagerOptions RequiredFieldMark="*" />
   </Options>
-  <Views>
-  </Views>
+  <SchemaModules>
+    <SchemaModule Name="SystemModule" Version="20.2.3.0" IsNewNode="True" />
+  </SchemaModules>
 </Application>

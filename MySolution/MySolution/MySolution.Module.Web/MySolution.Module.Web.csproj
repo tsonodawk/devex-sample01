@@ -109,6 +109,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\WebAlternatingRowsController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\WebAlternatingRowsController.Designer.cs">
+      <DependentUpon>WebAlternatingRowsController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\WebNullTextEditorController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\WebNullTextEditorController.Designer.cs">
+      <DependentUpon>WebNullTextEditorController.cs</DependentUpon>
+    </Compile>
     <Compile Include="WebModule.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -118,7 +130,14 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Controllers\WebAlternatingRowsController.resx">
+      <DependentUpon>WebAlternatingRowsController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\WebNullTextEditorController.resx">
+      <DependentUpon>WebNullTextEditorController.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Model.DesignedDiffs.xafml" />
+    <EmbeddedResource Include="Properties\licenses.licx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Controllers\ReadMe.txt" />
