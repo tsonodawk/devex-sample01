@@ -1,16 +1,10 @@
-﻿using System;
-using System.Linq;
-using System.Text;
-using DevExpress.Xpo;
-using DevExpress.ExpressApp;
-using System.ComponentModel;
-using DevExpress.ExpressApp.DC;
-using DevExpress.Data.Filtering;
+﻿using DevExpress.ExpressApp.Model;
 using DevExpress.Persistent.Base;
-using System.Collections.Generic;
-using DevExpress.ExpressApp.Model;
 using DevExpress.Persistent.BaseImpl;
 using DevExpress.Persistent.Validation;
+using DevExpress.Xpo;
+using System;
+using System.Linq;
 
 namespace MySolution.Module.BusinessObjects
 {
@@ -91,7 +85,7 @@ namespace MySolution.Module.BusinessObjects
         }
 
         private Contact manager;
-        [DataSourceProperty("Department.Contacts",DataSourcePropertyIsNullMode.SelectAll)]
+        [DataSourceProperty("Department.Contacts", DataSourcePropertyIsNullMode.SelectAll)]
         [DataSourceCriteria("Position.Title = 'Manager' AND Oid != '@This.Oid'")]
         public Contact Manager
         {
