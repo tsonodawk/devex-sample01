@@ -17,3 +17,4 @@ MySolution/MySolution/MySolution.Win/bin/
 MySolution/MySolution/MySolution.Win/obj/
 MySolution/MySolution/MySolution.Web/obj/
 MySolution/MySolution/MySolution.Web/bin/
+*.bak
